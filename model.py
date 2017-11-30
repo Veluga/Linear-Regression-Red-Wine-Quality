@@ -1,6 +1,6 @@
 import numpy as np
 
-import computeCostAndGradient as costGradient
+import linearRegressionFunctions as functionality
 
 # Importing dataset from CSV file, splitting data into train/test set
 filename = 'winequality-red.csv' 
@@ -20,5 +20,9 @@ data_test = np.append(x0, data_train, axis=1)
 
 theta = np.ones((data_train.shape[1], 1))
 
-costGradient.compute_cost_and_gradient(theta, data_train, Y_train)
+#perform feature scaling
+data_train = functionality.feature_scaling(data_train)
 
+#testing only
+J, gradients = functionality.compute_cost_and_gradient(theta, data_train, Y_train)
+print(J)
