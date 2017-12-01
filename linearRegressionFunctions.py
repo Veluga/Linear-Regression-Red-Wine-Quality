@@ -1,6 +1,7 @@
 import numpy as np
 import time
 
+#Perform feature scaling using mean and standard deviation
 def feature_scaling(X):
     m = X.shape[0]
     means = np.mean(X, axis=0)
@@ -20,6 +21,7 @@ def compute_cost_and_gradient(theta, X, Y):
     
     return J, gradients
 
+#One step of gradient descent, logging can be turned on or off via flag
 def perform_gradient_descent(theta, X, Y, alpha, iterations,logging = False):
     for i in range(iterations+1):
         start = time.time()
@@ -30,13 +32,15 @@ def perform_gradient_descent(theta, X, Y, alpha, iterations,logging = False):
     return J, theta
 
 
-
+#Log progress per step (optional)
 def log_progress(current_iteration, iterations, start_time, J):
     stop = time.time()
     print('Estimated time remaining: ' + str((stop-start_time)*1000*(iterations-current_iteration)) + 'ms')
     print('Current Cost: ' + str(J))
     print('Performing gradient descent (step ' + str(current_iteration) + '/' + str(iterations) + ')\n')
     
+#Use learned parameters theta to predict values for test set
+#Outputs accuracy for different tolerance values as well as mean average deviation
 def predict(theta, X, Y):
     print ('- - - - - - - - - - - - - - - - - - - - - - - - - - - - -')
     m = X.shape[0]

@@ -31,10 +31,11 @@ data_train = np.append(x0, data_train, axis=1)
 x0 = np.ones((data_test.shape[0], 1))
 data_test = np.append(x0, data_test, axis=1)
 
+#Set initial values of Theta to 0
 theta = np.zeros((data_train.shape[1], 1))
 
-#testing only
-log = True
-J, final_theta = functionality.perform_gradient_descent(theta, data_train, Y_train, alpha, max_iterations, log)
+#Perform Gradient Descent using training set
+J, final_theta = functionality.perform_gradient_descent(theta, data_train, Y_train, alpha, max_iterations, True)
 
+#Performance check using test set
 functionality.predict(final_theta, data_test, Y_test)
